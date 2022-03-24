@@ -1,4 +1,5 @@
-from .sound import Sound
+import json
+import os
 
 
 class Word:
@@ -7,50 +8,29 @@ class Word:
 
         Parameters
         ----------
-            id: int 
-                The id of the word
-            
-            word: string 
-                The word 
-
-            ipa: string 
-                The pronunciation with ipa format
-
-            sound: Sound 
-                The sound object that store sound of the word
-
-            senses: Sense[*]
-                The sense object that how people use the word
+            properties: Map
+                The map stores all information of the word.
     """
-    def __init__(self, word_id, word, word_type, ipa,
-            sound, senses):
-        self.__id = word_id
-        self.__word = word
-        self.__word_type = word_type
-        self.__ipa = ipa
-        self.__sound = Sound(sound)
-        self.__senses = senses
+    def __init__(self, properties):
+        self.__properties = properties
 
     @property
-    def id(self):
-        return self.__id 
+    def properties(self):
+        return self.__properties
 
-    @property
-    def word(self):
-        return self.__word
+    @properties.setter
+    def properties(self, new_properties):
+        self.__properties = new_properties
 
-    @property
-    def word_type(self):
-        return self.__word_type
+    def save(self, database):
+        """
+            The save method that will store the database (inherited from IDatabase class)
 
-    @property
-    def ipa(self):
-        return self.__ipa
-
-    @property
-    def sound(self):
-        return self.__sound
-
-    @property
-    def senses(self):
-        return self.__senses
+            Parameters
+                database: IDatabase
+                    The database in which that word is stored. 
+        """
+        folder = database.folder
+        
+        with open(os.path.join(folder, self.__properties['word']), 'w', encoding='utf-8') as file:
+            file.write(json.dumps(self.__properties))

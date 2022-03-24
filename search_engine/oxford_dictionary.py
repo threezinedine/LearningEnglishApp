@@ -1,5 +1,5 @@
 from .i_dictionary import IDictionary
-from data import Word, Sound, Sense, WordType
+from data import Word, WordType
 import requests
 import jsons
 
@@ -51,21 +51,29 @@ class OxfordDictionary(IDictionary):
 
         if 'error' in result.keys():
             return None
+
         
         for entries in result['results'][0]['lexicalEntries']:
+            properties = {}
             data = entries['entries'][0]
-            pronunciation = data['pronunciations'][0]
-            sound = pronunciation['audioFile']
-            ipa = pronunciation['phoneticSpelling']
-            word_type = WordType.return_type(entries['lexicalCategory']['text'])
+            pronunciation= data['pronunciations'][0]
+
+            properties["word"] = word_str
+            properties["sound"] = pronunciation['audioFile']
+            properties["ipa"] = pronunciation['phoneticSpelling']
+            properties["word_type"] = WordType.return_type(entries['lexicalCategory']['text']).value
 
             data_senses = data['senses']
             senses = []
             for data_sense in data_senses:
-                sense = Sense(data_sense['definitions'][0], example=data_sense['examples'][0]['text'])
+                sense = {"definition": data_sense['definitions'][0],
+                        "example":data_sense['examples'][0]['text'], 
+                        "my_example":""}
                 senses.append(sense)
 
-            word = Word(1, word_str, word_type, ipa, sound, senses)
+            properties["senses"] = senses
+
+            word = Word(properties)
             words.append(word)
 
         return words

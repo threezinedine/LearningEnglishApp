@@ -1,17 +1,29 @@
 from .i_display import IDisplay
+from data import Sound
 
 
 class WordDisplayer(IDisplay):
-    def show(word):
-        print(f"Word: {word.word}")
-        print(f"IPA: {word.ipa}")
-        print("\n")
+    @classmethod
+    def __show_sense(cls, sense):
+        print(f"----------------------")
+        for key, value in sense.items():
+            print(f"\t{key}: {value}")
+        print("-----------------------")
 
-        word.sound.play()
-        print("\n")
+    def show(cls, word):
+        """
+            Show the word information 
+            
+            Parameters
+            ----------
+                word: Word object
+        """
+        word_properties = word.properties
 
-        for sense in word.senses:
-            print(f"Definition: {sense.definition}")
-            print(f"Example: {sense.example}")
-            print(f"My Example: {sense.my_example}")
-            print(f"-------------------------------")
+        for key in word_properties.keys():
+            if key == "senses":
+                print("Senses:")
+                for sense in word_properties["senses"]:
+                    cls.__show_sense(sense)
+            else:
+                print(f"{key}: {word_properties[key]}")

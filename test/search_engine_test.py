@@ -16,7 +16,7 @@ class OxfordDictionaryTest(unittest.TestCase):
         results = self.search(word)
         print("\nResult")
         for result in results:
-            WordDisplayer.show(result)
+            WordDisplayer().show(result)
 
     def test_cannot_search(self):
         word = "auxilary"

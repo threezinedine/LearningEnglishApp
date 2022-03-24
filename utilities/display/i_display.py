@@ -1,7 +1,7 @@
-from abc import abstractstaticmethod, ABC
+from abc import abstractclassmethod, ABC
 
 
 class IDisplay(ABC):
-    @abstractstaticmethod
-    def show(word):
+    @abstractclassmethod
+    def show(cls, word):
         pass
