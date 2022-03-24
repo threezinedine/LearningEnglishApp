@@ -5,6 +5,7 @@ import os
 
 
 DIVIDER = ":;"
+DATABASE = "database"
 
 
 class WordSaver(ISaver):
@@ -24,8 +25,8 @@ class WordSaver(ISaver):
                     The writing mode in save the word into the database, 'w' will overide the data
         """
         current_date = get_current_date_str()
-        create_folder_if_not_exist(current_date)
-        file_name = os.path.join(current_date, f"{word.word}_{word.word_type.value}.txt")
+        create_folder_if_not_exist(os.path.join(DATABASE, current_date))
+        file_name = os.path.join(DATABASE, current_date, f"{word.word}_{word.word_type.value}.txt")
 
         save_string = ""
         save_string = DIVIDER.join([word.word, word.word_type.value, word.ipa, word.sound.url])

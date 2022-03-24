@@ -1,3 +1,4 @@
+import os
 from .i_loader import ILoader
 from ..date import convert_date_2_str
 from ..file import get_list_file_paths
@@ -5,6 +6,7 @@ from data import Word, WordType, Sense
 
 
 DIVIDER = ":;"
+DATABASE = "database"
 
 
 class WordLoader(ILoader):
@@ -42,7 +44,7 @@ class WordLoader(ILoader):
             ---------
                 date: python datetime
         """
-        folder = convert_date_2_str(date, divide_str='_')
+        folder = os.path.join(DATABASE, convert_date_2_str(date, divide_str='_'))
         files = get_list_file_paths(folder)
         words = []
 
