@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>main_widget</class>
+ <widget class="QWidget" name="main_widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>539</width>
+    <height>403</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>OpenHandCursor</cursorShape>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>English App</string>
+  </property>
+  <widget class="QPushButton" name="searching_button">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>120</y>
+     <width>101</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::PreventContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	border-radius: 10px;
+	background-color: rgb(208, 208, 208);
+	box-shadow: 2px 2px 5px 5px #888888;
+}</string>
+   </property>
+   <property name="text">
+    <string>Searching</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/start_icon.png</normaloff>../icons/start_icon.png</iconset>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>220</y>
+     <width>101</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	border-radius: 10px;
+	background-color: rgb(208, 208, 208);
+	box-shadow: 2px 2px 5px 5px #888888;
+}</string>
+   </property>
+   <property name="text">
+    <string>Revise</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/review_icon.png</normaloff>../icons/review_icon.png</iconset>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
