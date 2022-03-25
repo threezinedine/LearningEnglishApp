@@ -2,10 +2,10 @@ from abc import ABC, abstractclassmethod, abstractproperty
 
 
 class IDatabase(ABC):
-    @abstractproperty
-    def folder(self):
+    @abstractclassmethod
+    def load(cls, date):
         pass
 
     @abstractclassmethod
-    def load(self, date):
+    def save(cls, word):
         pass

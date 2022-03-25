@@ -4,6 +4,7 @@ import os
 from data import Word, WordType, Sound
 from utilities.display import WordDisplayer
 from utilities.database import Database
+from utilities import get_k_previous_date
 
 
 class WordTest(unittest.TestCase):
@@ -39,15 +40,15 @@ class WordTest(unittest.TestCase):
         word = Word(properties)
         return word
 
-    def test_save(self):
+    def test_save_load(self):
         word = self.initial_word()
-        database = Database()
-        
-        word.save(database)
+        Database().save(word)
 
-        print("The save information: ")
-        with open(os.path.join(database.folder, word.properties["word"]), 'r', encoding='utf-8') as file:
-            print(json.loads(file.read()))
+        words = Database().load(get_k_previous_date())
+
+        print("Print loaded words: ")
+        for word in words:
+            WordDisplayer().show(word)
 
     def test_diplayer(self):
         word = self.initial_word()

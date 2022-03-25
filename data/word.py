@@ -11,6 +11,20 @@ class Word:
             properties: Map
                 The map stores all information of the word.
     """
+    @staticmethod
+    def word_from(properties):
+        """
+            The method initialize the Word object from a certain properties map.
+
+            Parameters
+            ----------
+                properties: map
+                    The properties of the word.
+        """
+        word = Word({})
+        word.properties = properties
+        return word
+
     def __init__(self, properties):
         self.__properties = properties
 
@@ -22,15 +36,5 @@ class Word:
     def properties(self, new_properties):
         self.__properties = new_properties
 
-    def save(self, database):
-        """
-            The save method that will store the database (inherited from IDatabase class)
-
-            Parameters
-                database: IDatabase
-                    The database in which that word is stored. 
-        """
-        folder = database.folder
-        
-        with open(os.path.join(folder, self.__properties['word']), 'w', encoding='utf-8') as file:
-            file.write(json.dumps(self.__properties))
+    def __getitem__(self, item):
+        return self.__properties[item]

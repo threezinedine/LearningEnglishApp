@@ -64,9 +64,16 @@
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="pronounciation_layout" stretch="9,1">
+            <layout class="QHBoxLayout" name="pronounciation_layout" stretch="4,4,1">
              <item>
-              <widget class="QLabel" name="pronounciation_label">
+              <widget class="QLabel" name="word_type_label">
+               <property name="text">
+                <string>Word Type</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="pronunciation_label">
                <property name="text">
                 <string>IPA pronounciation</string>
                </property>
@@ -95,7 +102,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="sentence_label_1">
+              <widget class="QLabel" name="example_label_1">
                <property name="text">
                 <string>Sentence: </string>
                </property>
@@ -127,7 +134,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="sentence_label_2">
+              <widget class="QLabel" name="example_label_2">
                <property name="text">
                 <string>Sentence: </string>
                </property>
@@ -159,7 +166,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="sentence_label_3">
+              <widget class="QLabel" name="example_label_3">
                <property name="text">
                 <string>Sentence: </string>
                </property>
