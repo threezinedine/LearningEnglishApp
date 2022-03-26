@@ -1,6 +1,7 @@
 import unittest
 from search_engine import OxfordDictionary
 from utilities.display import WordDisplayer
+from utilities.database import Database
 
 
 class OxfordDictionaryTest(unittest.TestCase):
@@ -11,12 +12,14 @@ class OxfordDictionaryTest(unittest.TestCase):
         return results
 
     def test_search(self):
-        word = "roughly"
+        word = "test"
         print(f"Search a word: {word}")
         results = self.search(word)
         print("\nResult")
-        for result in results:
+        for result in reversed(results):
             WordDisplayer().show(result)
+            Database().save(result)
+
 
     def test_cannot_search(self):
         word = "auxilary"

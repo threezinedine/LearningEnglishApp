@@ -66,10 +66,12 @@ class OxfordDictionary(IDictionary):
             data_senses = data['senses']
             senses = []
             for data_sense in data_senses:
-                sense = {"definition": data_sense['definitions'][0],
-                        "example":data_sense['examples'][0]['text'], 
-                        "my_example":""}
-                senses.append(sense)
+                keys = data_sense.keys()
+                if "definitions" in keys and "examples" in keys:
+                    sense = {"definition": data_sense['definitions'][0],
+                            "example":data_sense['examples'][0]['text'], 
+                            "my_example":""}
+                    senses.append(sense)
 
             properties["senses"] = senses
 

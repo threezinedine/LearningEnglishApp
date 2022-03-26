@@ -7,7 +7,7 @@ class GraphicDisplayer(IDisplay):
         self.frames_dict = frames_dict
 
     def show(self, word):
-        for key in word.keys():
+        for key in word.properties.keys():
             if key == "sound":
                 pass
             elif key != "senses":

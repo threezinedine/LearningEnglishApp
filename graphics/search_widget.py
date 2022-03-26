@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QHBoxLayout, QLabel, QVBoxLayout, QLineEdit
+from threading import Thread
 from PyQt5 import uic
-from utilities import get_full_path
+from utilities import get_full_path, play_url
 from utilities.display import GraphicDisplayer
 import os
 from time import sleep
@@ -38,9 +39,9 @@ class MySearchWidget(QWidget):
         self.example_2 = self.findChild(QLabel, 'example_label_2')
         self.example_3 = self.findChild(QLabel, 'example_label_3')
 
-        self.my_example_1 = self.findChild(QLineEdit, 'my_example_label_1')
-        self.my_example_2 = self.findChild(QLineEdit, 'my_example_label_2')
-        self.my_example_3 = self.findChild(QLineEdit, 'my_example_label_3')
+        self.my_example_1 = self.findChild(QLineEdit, 'my_example_1')
+        self.my_example_2 = self.findChild(QLineEdit, 'my_example_2')
+        self.my_example_3 = self.findChild(QLineEdit, 'my_example_3')
 
         self.sense_3 = self.findChild(QVBoxLayout, 'sense_3')
 
@@ -66,26 +67,53 @@ class MySearchWidget(QWidget):
         frames_dict = {
                 "word": self.word_label,
                 "ipa": self.pronunciation_label,
-                "word_type": self.word_label,
+                "word_type": self.word_type_label,
                 "sound": "",
                 "senses": senses
                 }
+        return frames_dict
+
+    def reset_frames(self):
+        self.word_label.setText("")
+        self.pronunciation_label.setText("")
+        self.word_type_label.setText("")
+        self.definition_1.setText("")
+        self.definition_2.setText("")
+        self.definition_3.setText("")
+
+        self.example_1.setText("")
+        self.example_2.setText("")
+        self.example_3.setText("")
+
+        self.my_example_1.setText("")
+        self.my_example_2.setText("")
+        self.my_example_3.setText("")
 
     def init(self):
         uic.loadUi(get_full_path(__file__, SEARCH_WIDGET_UI), self)
 
     def __play_sound(self):
-        print("sound is playing ...")
-        sleep(1)
-        print("done.")
+        play_url(self.current_word['sound'])
 
     def __save(self):
         if self.current_word is None:
             pass
         else:
-            pass
+            for index, my_example in enumerate([self.my_example_1, self.my_example_2, self.my_example_3]):
+                if index < len(self.current_word.properties['senses']):
+                    if my_example.text() != "":
+                        self.current_word.properties['senses'][index]['my_example'] = my_example.text()
+
+            Database().save(self.current_word)
+
+    def click_search_button(self):
+        thread = Thread(target=self.__search, args=())
+        thread.start()
 
     def __search(self):
+        self.reset_frames()
         words = self.dict.search_word(self.search_line.text())
         if words is not None:
             self.graphic_displayer.show(words[0])
+            self.current_word = words[0]
+            self.__save()
