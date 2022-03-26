@@ -59,9 +59,17 @@ class Database(IDatabase):
                     All words that stored in the day that give in. 
         """
         words = []
+
+        create_folder_if_not_exist(date)
         
         files = get_list_file_paths(date)
         for file in files:
             words.append(cls.__load_word(file))
 
         return words
+
+    def save_to_review(cls, word):
+        pass 
+
+    def save_today_info(cls, today_file):
+        pass
