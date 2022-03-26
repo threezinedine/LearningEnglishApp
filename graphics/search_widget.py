@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QHBoxLayout, QLabel, QVBoxLayout, QLineEdit
+from functools import partial
 from threading import Thread
 from PyQt5 import uic
 from utilities import get_full_path, play_url
@@ -16,6 +17,8 @@ class MySearchWidget(QWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.init()
+
+        self.match_results = self.findChild(QVBoxLayout, 'match_results')
 
         self.sound_button = self.findChild(QPushButton, 'sound_button')
         self.sound_button.clicked.connect(self.__play_sound)
@@ -91,6 +94,7 @@ class MySearchWidget(QWidget):
 
     def init(self):
         uic.loadUi(get_full_path(__file__, SEARCH_WIDGET_UI), self)
+        self.setGeometry(50, 50, 1000, 900)
 
     def __play_sound(self):
         play_url(self.current_word['sound'])
@@ -110,10 +114,23 @@ class MySearchWidget(QWidget):
         thread = Thread(target=self.__search, args=())
         thread.start()
 
-    def __search(self):
+    def __remove_layout(self, layout):
+        for i in reversed(range(layout.count())):
+            layout.removeItem(layout.itemAt(i))
+
+    def __show__word(self, words, index=0):
         self.reset_frames()
-        words = self.dict.search_word(self.search_line.text())
         if words is not None:
-            self.graphic_displayer.show(words[0])
-            self.current_word = words[0]
+            self.graphic_displayer.show(words[index])
+            self.__remove_layout(self.match_results)
+            self.current_word = words[index]
             self.__save()
+
+            for i in range(len(words)):
+                other_button = QPushButton(f"{words[i]['word']}({words[i]['word_type']})")
+                other_button.clicked.connect(partial(self.__show__word, words, i))
+                self.match_results.addWidget(other_button) 
+
+    def __search(self):
+        words = self.dict.search_word(self.search_line.text())
+        self.__show__word(words)
