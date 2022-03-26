@@ -204,7 +204,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,1,1">
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,1,1">
+          <layout class="QHBoxLayout" name="others_frame" stretch="1,1,1">
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
