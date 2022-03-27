@@ -10,6 +10,7 @@ class Database(IDatabase):
     base_folder = "database"
     review_folder = "review"
 
+    create_folder_if_not_exist(base_folder)
     create_folder_if_not_exist(os.path.join(base_folder, review_folder))
 
     def __init__(self):
