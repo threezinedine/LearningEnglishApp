@@ -118,13 +118,22 @@ class MySearchWidget(QWidget):
         thread.start()
 
     def __remove_layout(self, layout):
-        for i in reversed(range(layout.count())):
-            layout.removeItem(layout.itemAt(i))
+        if layout is not None:
+            while layout.count():
+                item = layout.takeAt(0)
+                widget = item.widget()
+                if widget is not None:
+                    widget.deleteLater()
+                else:
+                    self.clearLayout(item.layout())
+#        for i in reversed(range(layout.count())):
+#            layout.removeItem(layout.itemAt(i))
 
     def __show__word(self, words, index=0):
         self.reset_frames()
         if words is not None:
             self.graphic_displayer.show(words[index])
+            self.__play_sound()
             self.__remove_layout(self.match_results)
             self.current_word = words[index]
             self.__save()
