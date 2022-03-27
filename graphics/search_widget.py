@@ -133,10 +133,10 @@ class MySearchWidget(QWidget):
         self.reset_frames()
         if words is not None:
             self.graphic_displayer.show(words[index])
-            self.__play_sound()
             self.__remove_layout(self.match_results)
             self.current_word = words[index]
             self.__save()
+            self.__play_sound()
 
             for i in range(len(words)):
                 other_button = QPushButton(f"{words[i]['word']}({words[i]['word_type']})")
