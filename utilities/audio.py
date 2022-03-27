@@ -1,12 +1,16 @@
-import urllib
-from pydub import AudioSegment
-from pydub.playback import play
+import requests
+from pygame import mixer
+import os
+from time import sleep
 
 
-def play_url(url):
-    mp3file = urllib.request.urlopen(url)
-    with open('utilities/test.mp3','wb') as output:
-      output.write(mp3file.read())
+def play_url(url, save_folder):
+    response = requests.get(url)
+    with open(os.path.join(save_folder, 'sound.mp3'), 'wb') as file:
+        file.write(response.content)
 
-    song = AudioSegment.from_mp3("utilities/test.mp3")
-    play(song)
+    mixer.init() 
+    mixer.music.load(os.path.join(save_folder, 'sound.mp3'))
+    mixer.music.play()
+    sleep(2)
+    mixer.quit()

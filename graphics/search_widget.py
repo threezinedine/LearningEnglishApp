@@ -4,6 +4,7 @@ from threading import Thread
 from PyQt5 import uic
 from utilities import get_full_path, play_url
 from utilities.display import GraphicDisplayer
+from data import Sound
 import os
 from time import sleep
 from search_engine import OxfordDictionary
@@ -97,7 +98,9 @@ class MySearchWidget(QWidget):
         self.setGeometry(50, 50, 1000, 600)
 
     def __play_sound(self):
-        play_url(self.current_word['sound'])
+        if self.current_word is not None:
+            sound = Sound(self.current_word.properties['sound'])
+            sound.play()
 
     def __save(self):
         if self.current_word is None:

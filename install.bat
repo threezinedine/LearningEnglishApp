@@ -1,6 +1,5 @@
-start pip install virtualenv
+pip install virtualenv
 virtualenv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-venv\Scripts\deactivate.bat
+venv\Scripts\pip.exe install -r requirements.txt
+venv\Scripts\python.exe install.py
 
