@@ -94,7 +94,7 @@ class MySearchWidget(QWidget):
 
     def init(self):
         uic.loadUi(get_full_path(__file__, SEARCH_WIDGET_UI), self)
-        self.setGeometry(50, 50, 1000, 900)
+        self.setGeometry(50, 50, 1000, 600)
 
     def __play_sound(self):
         play_url(self.current_word['sound'])
