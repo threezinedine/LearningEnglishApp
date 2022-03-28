@@ -3,6 +3,8 @@ from utilities import date
 
 class TodayFile:
     def __init__(self, properties):
+        if len(properties['words']) == 0:
+            properties['review_done'] = True
         self.__properties = properties
 
     @property
@@ -20,11 +22,13 @@ class TodayFile:
     def __del_word_in_list(self):
         if len(self.__properties['words']) >= 1:
             self.__properties['words'] = self.__properties['words'][:-1]
-            if len(self.__properties['words']):
+            if len(self.__properties['words']) == 0:
                 self.__properties['review_done'] = True
-
+        
     def get_word(self):
-        return self.__properties['words'][-1]
+        result = self.__properties['words'][-1]
+        self.__del_word_in_list()
+        return result
 
     def has_review_done(self):
         return self.__properties['review_done']

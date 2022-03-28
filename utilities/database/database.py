@@ -46,7 +46,6 @@ class Database(IDatabase):
 
     @classmethod
     def __load_word(cls, file_name):
-        print(file_name)
         with open(file_name, 'r', encoding='utf-8') as file:
             data = json.loads(file.read())
 
@@ -70,7 +69,7 @@ class Database(IDatabase):
 
         create_folder_if_not_exist(os.path.join(cls.base_folder, date))
         
-        files = get_list_file_paths(date)
+        files = get_list_file_paths(os.path.join(cls.base_folder, date))
         for file in files:
             words.append(cls.__load_word(file))
 
@@ -78,7 +77,6 @@ class Database(IDatabase):
 
     def load_review_word(cls, word_str):
         today_file = get_k_previous_date() 
-        print(os.path.join(cls.base_folder, cls.review_folder, word_str))
         if os.path.isfile(os.path.join(cls.base_folder, cls.review_folder, word_str)):
             return cls.__load_word(os.path.join(cls.base_folder, cls.review_folder, word_str))
 
@@ -92,7 +90,17 @@ class Database(IDatabase):
         return os.path.isfile(os.path.join(cls.base_folder, cls.review_folder, today_file))
 
     def load_today_file(cls):
-        with open(os.path.join(cls.base_folder, cls.review_folder, word_str), 'r', encoding='utf-8') as f:
+        file = get_k_previous_date()
+        with open(os.path.join(cls.base_folder, cls.review_folder, file), 'r', encoding='utf-8') as f:
             today_file = TodayFile(json.loads(f.read()))
 
+        return today_file
 
+    def clear_review_folder(cls):
+        today_file = get_k_previous_date()
+
+        files = get_list_file_paths(os.path.join(cls.base_folder, cls.review_folder))
+
+        for file in files:
+            if file != os.path.join(cls.base_folder, cls.review_folder, today_file):
+                os.remove(file)

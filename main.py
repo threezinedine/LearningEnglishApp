@@ -1,11 +1,11 @@
 import sys
-from graphics import MyMainWidget, MySearchWidget
+from graphics import MyMainWidget, MySearchWidget, ReviewWidget
 from PyQt5.QtWidgets import QApplication
 
 
 def main():
     app = QApplication(sys.argv) 
-    win = MySearchWidget()
+    win = ReviewWidget()
     win.show()
     sys.exit(app.exec_())
 

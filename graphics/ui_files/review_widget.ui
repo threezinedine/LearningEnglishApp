@@ -32,7 +32,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="next_button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	width: 25px;
@@ -47,7 +47,165 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_3"/>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="word_label">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>16</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Word</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="word_type_label">
+             <property name="text">
+              <string>Word Type</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="Line" name="line_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="9,1">
+           <item>
+            <widget class="QLabel" name="ipa_label">
+             <property name="text">
+              <string>IPA</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="sound_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	width: 25px;
+	height: 25px;
+}
+
+</string>
+             </property>
+             <property name="text">
+              <string>Sound</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QLabel" name="definition_label_1">
+           <property name="text">
+            <string>Definition</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="example_label_1">
+           <property name="text">
+            <string>Example</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="my_example_label_1">
+           <property name="text">
+            <string>My Example</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QLabel" name="definition_label_2">
+           <property name="text">
+            <string>Definition</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="example_label_2">
+           <property name="text">
+            <string>Example</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="my_example_label_2">
+           <property name="text">
+            <string>My Example</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QLabel" name="definition_label_3">
+           <property name="text">
+            <string>Definition</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="example_label_3">
+           <property name="text">
+            <string>Example</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="my_example_label_3">
+           <property name="text">
+            <string>My Example</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
