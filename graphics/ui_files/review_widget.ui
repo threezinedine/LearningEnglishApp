@@ -42,6 +42,9 @@
          <property name="text">
           <string>Next</string>
          </property>
+         <property name="shortcut">
+          <string>Return</string>
+         </property>
         </widget>
        </item>
       </layout>
@@ -102,6 +105,12 @@
              </property>
              <property name="text">
               <string>Sound</string>
+             </property>
+             <property name="shortcut">
+              <string>Ctrl+M</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
