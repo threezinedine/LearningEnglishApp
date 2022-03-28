@@ -18,3 +18,8 @@
 
 - The word that you searched will be automated save in the database that will be called again later.
 - You can also play the sound of this word (should wait 2s before making other).
+
+# Shortcut
+
+1. <Shift>M: sound
+2. <Enter>: Search the word / The next word
