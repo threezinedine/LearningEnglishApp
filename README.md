@@ -21,5 +21,5 @@
 
 # Shortcut
 
-1. <Shift>M: sound
-2. <Enter>: Search the word / The next word
+1. Shift M: sound
+2. Enter: Search the word / The next word
